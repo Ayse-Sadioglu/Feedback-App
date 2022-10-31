@@ -1,41 +1,35 @@
 import Header from "./components/Header";
-import FeedbackItem from "./components/FeedbackItem";
-import {useState} from 'react'
-
-
+import { useState } from "react";
+import FeedbackList from "./components/FeedbackList";
+import FeedbackData from "./data/FeedbackData";
 
 function App() {
+  const [feedback, setFeedBack] = useState(FeedbackData);
 
-  const [feedback,setFeedBack]=useState(
 
-   
-      {
-        id: 1,
-        rating: 10,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.',
-      },
-      {
-        id: 2,
-        rating: 9,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.',
-      },
-      {
-        id: 3,
-        rating: 8,
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.',
-      },
-    
-  )
- return ( 
+const deleteFeedback=(id)=>{
+  if(window.confirm('Are you sur you want to delete?')){
+    setFeedBack(feedback.filter((items)=>items.id !==id))
+    //filter will return the feedbacks except we wanted to delete and the new state will be the feedbacks
+    //minus the feedback we wanted to delete
+
+  }
  
- <>
-  <Header />
-  <div className="container">
-   <FeedbackItem/>
-  </div>
-</>)
-   
-  
+
+
+}
+  return (
+    <>
+      <Header />
+      <div className="container">
+        <FeedbackList  feedback={feedback}
+        handleDelete={deleteFeedback}
+
+        />
+       
+       
+      </div>
+    </>
+  );
 }
 export default App;
- 
