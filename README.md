@@ -1,2 +1,2 @@
 
-Basic feedback app built with React.js
+feedback app built with React.js
